@@ -54,6 +54,7 @@ function App() {
           onChange={(e) => setTask(e.target.value)}
           placeholder="Add a new task"
           className="input-task"
+          maxLength='100'
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               addTodo();
