@@ -11,7 +11,7 @@ body {
 
 .list-container {
   max-width: 500px;
-  margin: 40px auto;
+  margin: 100px auto;
 }
 .add-container {
   display: flex;
@@ -28,6 +28,8 @@ body {
   padding: 0 15px;
   font-size: 1rem;
   background: transparent;
+    color: #ffffff;
+
 }
 .add-container .input-task:focus,
 .add-container .input-task:focus-visible {

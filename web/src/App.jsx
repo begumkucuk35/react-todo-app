@@ -6,15 +6,21 @@ import "./App.css";
 
 function App() {
   const [task, setTask] = useState(""); // tasks in input
-  const [todos, setTodos] = useState([{
-    id: 1,
-    name: "Study lesson",
-    completed: false
-  }]); // todo list
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      name: "Study lesson",
+      completed: false,
+    },
+  ]); // todo list
   const [dones, setDones] = useState([]); // done list
 
   // Add the task
-  const addTodo = () => {};
+  const addTodo = () => {
+    if (task.trim() === "") return; // to prevent adding empty
+    setTodos([...todos, { id: Date.now(), name: task, completed: false }]);
+    setTask("");
+  };
 
   // Delete the task
   const deleteTodo = (id) => {};
@@ -31,32 +37,36 @@ function App() {
           onChange={(e) => setTask(e.target.value)}
           placeholder="Add a new task"
           className="input-task"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addTodo();
+            }
+          }}
         />
         <button onClick={addTodo} className="btn-add">
           <img src={btnAdd} alt="Add Task" />
         </button>
       </div>
       <div className="tasks-container">
-        <h4>Tasks to do - 4</h4>
+        <h4>Tasks to do - {todos.length}</h4>
         <ul>
           {todos.map((task) => (
             <li key={task.id} className="task-todo">
               <span>{task.name}</span>
-                    <div className="actions">
-
-              <button onClick={() => toggleComplete(task.id)}>
-                <img src={completeTask} alt="Complete Task" />
-              </button>
-              <button onClick={() => deleteTodo(task.id)}>
-                <img src={deleteTask} alt="Delete Task" />
-              </button>
+              <div className="actions">
+                <button onClick={() => toggleComplete(task.id)}>
+                  <img src={completeTask} alt="Complete Task" />
+                </button>
+                <button onClick={() => deleteTodo(task.id)}>
+                  <img src={deleteTask} alt="Delete Task" />
+                </button>
               </div>
             </li>
           ))}
         </ul>
       </div>
       <div className="tasks-container">
-        <h4>Done - 4</h4>
+        <h4>Done - {dones.length}</h4>
         <ul>
           {dones.map((task) => (
             <li key={task.id} className="task-done">
