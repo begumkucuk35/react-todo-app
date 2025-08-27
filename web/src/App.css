@@ -1,8 +1,78 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #1e1e1e;
 }
 
-
+.list-container {
+  max-width: 500px;
+  margin: 40px auto;
+}
+.add-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 60px;
+}
+.add-container .input-task {
+  border: 1px solid #3e1671;
+  border-radius: 10px;
+  height: 40px;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 1rem;
+  background: transparent;
+}
+.add-container .input-task:focus,
+.add-container .input-task:focus-visible {
+  border-color: #9e78cf;
+  outline: none;
+}
+.add-container .input-task::placeholder {
+  color: #777777;
+}
+.add-container .btn-add {
+  background: none;
+  border: none;
+  display: flex;
+  cursor: pointer;
+}
+.tasks-container {
+  margin-bottom: 60px;
+}
+.tasks-container h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+.tasks-container li {
+  height: 75px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #15101c;
+  font-size: 1rem;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin: 16px 0;
+}
+.tasks-container .actions {
+  display: flex;
+  gap: 10px;
+}
+.tasks-container .actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.tasks-container .task-todo {
+  color: #9e78cf;
+}
