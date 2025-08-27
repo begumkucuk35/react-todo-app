@@ -13,7 +13,6 @@ function App() {
       completed: false,
     },
   ]); // todo list
-  const [dones, setDones] = useState([]); // done list
 
   // Add the task
   const addTodo = () => {
@@ -23,10 +22,18 @@ function App() {
   };
 
   // Delete the task
-  const deleteTodo = (id) => {};
+  const deleteTodo = (id) => {
+    setTodos(todos.filter((task) => task.id !== id));
+  };
 
   // Complete the task
-  const toggleComplete = (id) => {};
+  const toggleComplete = (id) => {
+    setTodos(
+      todos.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
 
   return (
     <div className="list-container">
@@ -48,9 +55,9 @@ function App() {
         </button>
       </div>
       <div className="tasks-container">
-        <h4>Tasks to do - {todos.length}</h4>
+        <h4>Tasks to do - {todos.filter(t => !t.completed).length}</h4>
         <ul>
-          {todos.map((task) => (
+          {todos.filter(t => !t.completed).map((task) => (
             <li key={task.id} className="task-todo">
               <span>{task.name}</span>
               <div className="actions">
@@ -66,9 +73,9 @@ function App() {
         </ul>
       </div>
       <div className="tasks-container">
-        <h4>Done - {dones.length}</h4>
+        <h4>Done - {todos.filter(t => t.completed).length}</h4>
         <ul>
-          {dones.map((task) => (
+          {todos.filter(t => t.completed).map((task) => (
             <li key={task.id} className="task-done">
               <span>{task.name}</span>
             </li>

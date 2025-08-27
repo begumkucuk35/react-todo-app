@@ -78,3 +78,7 @@ body {
 .tasks-container .task-todo {
   color: #9e78cf;
 }
+.tasks-container .task-done{
+  color: #78CFB0;
+  text-decoration: line-through;
+}
