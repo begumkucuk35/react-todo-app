@@ -1,12 +1,53 @@
-# React + Vite
+# React Todo App 🎯
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive **Todo application** built with React and Vite.  
+Users can add tasks, mark them as complete, and delete them.  
+🎉 A confetti animation celebrates when all tasks are completed!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎨 Design
+This Todo App UI is inspired by a public Figma design:  
+[Figma Community Design](https://www.figma.com/design/T5bBgEPhcDhY5lQ4qui1nx/Todo-App--Community-?node-id=1-171&t=vNoSSRK8iGn6i7IC-1)
 
-## Expanding the ESLint configuration
+> Tip: Click the link to view the prototype
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🚀 Demo
+![til](./src/assets/todo-app-demo.gif)
+
+---
+
+## 🛠 Technologies
+- **React** (Vite)  
+- **CSS** (`App.css`)  
+- **Confetti animation** via `react-confetti`  
+
+---
+
+## ✅ Features
+- Clean UI inspired by **Figma Community Design**  
+- Add tasks via input field and **Enter key** or **Add button**.  
+- Mark tasks as **completed** ✅.  
+- Delete tasks ❌.  
+- Confetti animation triggers when **all tasks are completed**.  
+- Real-time task counter showing remaining tasks.  
+
+---
+
+## 💻 Installation
+
+```bash
+1. Clone the repository:
+    git clone https://github.com/begumkucuk35/react-todo-app.git
+2. Navigate to project folder:
+    cd react-todo-app
+    cd web
+3. Install dependencies:
+    npm install
+4. Start development server:
+    npm run dev
+5. Open in browser:
+    http://localhost:5173
+
