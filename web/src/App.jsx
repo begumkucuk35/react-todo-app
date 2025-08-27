@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import btnAdd from "./assets/btn-add.svg";
 import completeTask from "./assets/check.svg";
 import deleteTask from "./assets/trash.svg";
@@ -14,6 +14,7 @@ function App() {
       completed: false,
     },
   ]); // todo list
+  const [showConfetti, setShowConfetti] = useState(false);
 
   // Add the task
   const addTodo = () => {
@@ -36,6 +37,14 @@ function App() {
     );
   };
 
+  useEffect(() => {
+    if (todos.filter((t) => !t.completed).length == 0 && todos.length > 0) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 7000);
+    }
+  }, [todos]);
   return (
     <div className="list-container">
       <div className="add-container">
@@ -59,8 +68,10 @@ function App() {
         <h4>Tasks to do - {todos.filter((t) => !t.completed).length}</h4>
         {todos.filter((t) => !t.completed).length == 0 && todos.length > 0 ? (
           <div>
-            <p className="congrats-text">Congratulations! You completed all of your tasks...</p>
-          <Confetti/>
+            <p className="congrats-text">
+              Congratulations! You completed all of your tasks...
+            </p>
+            {showConfetti && <Confetti />}
           </div>
         ) : (
           <ul>
