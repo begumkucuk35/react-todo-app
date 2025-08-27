@@ -53,6 +53,11 @@ body {
   font-weight: 500;
   color: #ffffff;
 }
+.tasks-container .congrats-text{
+  color: #78CFB0;
+  font-size: 1.25rem;
+  padding: 2rem 0 0;
+}
 .tasks-container li {
   height: 75px;
   width: 100%;
