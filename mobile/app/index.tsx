@@ -33,10 +33,11 @@ export default function index() {
   const toggleComplete = (id: string): void => {};
 
   return (
-    <View>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.addContainer}>
         <TextInput
-          placeholder="Add a task..."
+          placeholder="Add a new task"
+          style={styles.taskInput}
           value={task}
           onChangeText={setTask}
         />
@@ -48,4 +49,24 @@ export default function index() {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor: '#1e1e1e',
+    flex: 1,
+  },
+  addContainer:{
+    flexDirection: 'row',
+    gap: 10,
+  },
+  taskInput:{
+    borderWidth:2,
+    borderColor: '#3e1671',
+    paddingBlock: 0,
+    paddingInline: 15,
+    borderRadius: 10,
+    backgroundColor: 'transparent',
+    height: 40,
+    flex: 1,
+    color: '#ffffff'
+  }
+});
