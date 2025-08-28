@@ -1,50 +1,59 @@
-# Welcome to your Expo app 👋
+# React Todo App 🎯
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern, interactive Todo application built with React Native.
+Users can add tasks, mark them as complete, and delete them.
+🎉 A confetti animation celebrates when all tasks are completed!
 
-## Get started
+---
 
-1. Install dependencies
+## 🎨 Design
+This Todo App UI is inspired by a public Figma design:  
+[Figma Community Design](https://www.figma.com/design/T5bBgEPhcDhY5lQ4qui1nx/Todo-App--Community-?node-id=1-171&t=vNoSSRK8iGn6i7IC-1)
 
-   ```bash
-   npm install
-   ```
+> Tip: Click the link to view the prototype
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🚀 Demo
+![til](./assets/images/todo-app-mobile-demo.gif)
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠 Technologies
+- React Native (Expo)
+- TypeScript
+- React Native Gesture & Animations
+- Confetti animation via react-native-confetti-cannon
+- FlatList for task rendering
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## ✅ Features
+- Clean UI inspired by **Figma Community Design**  
+- Add tasks via input field and **Enter key** or **Add button**.  
+- Mark tasks as **completed** ✅.  
+- Delete tasks ❌.  
+- Confetti animation triggers when **all tasks are completed**.  
+- Real-time task counter showing remaining tasks.  
 
-When you're ready, run:
+---
+
+## 💻 Installation
 
 ```bash
-npm run reset-project
-```
+1. Clone the repository:
+    git clone https://github.com/begumkucuk35/react-todo-app.git
+2. Navigate to project folder:
+    cd react-todo-app
+    cd mobile
+3. Install dependencies:
+    npm install
+4. Start development server:
+    expo start
+5. Open in Expo Go app on your phone or in an emulator
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+⚡ Notes
+- Ensure Expo Go is installed on your mobile device for testing.
+- Works both on iOS and Android.
+- Confetti triggers only when all tasks are marked as completed.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
