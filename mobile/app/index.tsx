@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import ConfettiCannon from "react-native-confetti-cannon";
 
 interface Todo {
   id: string;
@@ -25,21 +26,39 @@ export default function index() {
     },
   ]); // todo list
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   // Add the task
   const addTodo = (): void => {
-    if(task.trim() === "") return;
-    setTodos([...todos, {id:Date.now().toString(), name: task, completed: false}]);
+    if (task.trim() === "") return;
+    setTodos([
+      ...todos,
+      { id: Date.now().toString(), name: task, completed: false },
+    ]);
     setTask("");
   };
 
   // Delete the task
   const deleteTodo = (id: string): void => {
-    setTodos(todos.filter((task) => task.id !== id ));
+    setTodos(todos.filter((task) => task.id !== id));
   };
 
   // Complete the task
-  const toggleComplete = (id: string): void => {};
+  const toggleComplete = (id: string): void => {
+    setTodos(
+      todos.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+  useEffect(() => {
+    if (todos.filter((t) => !t.completed).length == 0 && todos.length > 0) {
+      setShowConfetti(true);
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 7000);
+    }
+  }, [todos]);
 
   return (
     <View style={styles.container}>
@@ -58,16 +77,24 @@ export default function index() {
       </View>
 
       <View style={styles.taskContainer}>
-        <Text style={{ color: "#ffffff", marginBottom: 5, }}>
+        <Text style={{ color: "#ffffff", marginBottom: 5 }}>
           Tasks to do - {todos.filter((t) => !t.completed).length}
         </Text>
+        {todos.filter((t) => !t.completed).length == 0 && todos.length > 0 && (
+          <Text style={{ color: "#78CFB0" }}>
+            Congratulations! You completed all of your tasks...
+          </Text>
+        )}
         <FlatList
           data={todos.filter((t) => !t.completed)}
           keyExtractor={(item: Todo) => item.id}
           renderItem={({ item }: { item: Todo }) => (
             <View style={styles.taskList}>
               <Text style={{ color: "#9e78cf", flex: 1 }}>{item.name}</Text>
-              <TouchableOpacity style={{marginRight:2}} onPress={() => toggleComplete(item.id)}>
+              <TouchableOpacity
+                style={{ marginRight: 2 }}
+                onPress={() => toggleComplete(item.id)}
+              >
                 <Image source={require("../assets/images/check.svg")} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => deleteTodo(item.id)}>
@@ -78,7 +105,7 @@ export default function index() {
         />
       </View>
       <View style={styles.taskContainer}>
-        <Text style={{ color: "#ffffff", marginBottom: 5, }}>
+        <Text style={{ color: "#ffffff", marginBottom: 5 }}>
           Done - {todos.filter((t) => t.completed).length}
         </Text>
         <FlatList
@@ -86,11 +113,25 @@ export default function index() {
           keyExtractor={(item: Todo) => item.id}
           renderItem={({ item }: { item: Todo }) => (
             <View style={styles.taskList}>
-              <Text style={{ color: "#78CFB0", textDecorationLine:"line-through" }}>{item.name}</Text>
+              <Text
+                style={{ color: "#78CFB0", textDecorationLine: "line-through" }}
+              >
+                {item.name}
+              </Text>
             </View>
           )}
         />
       </View>
+      {showConfetti && (
+        <ConfettiCannon
+          count={150}
+          origin={{ x: -20, y: 0 }}
+          fadeOut={true}
+          autoStart={true}
+          explosionSpeed={350}
+          fallSpeed={2500}
+        />
+      )}
     </View>
   );
 }
@@ -128,8 +169,8 @@ const styles = StyleSheet.create({
     height: 50,
     flexDirection: "row",
     borderRadius: 10,
-    backgroundColor: '#15101c',
-    alignItems: 'center',
+    backgroundColor: "#15101c",
+    alignItems: "center",
     paddingInline: 5,
     marginBlock: 2,
   },
