@@ -27,7 +27,11 @@ export default function index() {
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   // Add the task
-  const addTodo = (): void => {};
+  const addTodo = (): void => {
+    if(task.trim() === "") return;
+    setTodos([...todos, {id:Date.now().toString(), name: task, completed: false}]);
+    setTask("");
+  };
 
   // Delete the task
   const deleteTodo = (id: string): void => {};
@@ -51,14 +55,16 @@ export default function index() {
         </TouchableOpacity>
       </View>
 
-      <View>
-        <Text>Tasks to do - {todos.filter((t) => !t.completed).length}</Text>
+      <View style={styles.taskContainer}>
+        <Text style={{ color: "#ffffff", marginBottom: 5, }}>
+          Tasks to do - {todos.filter((t) => !t.completed).length}
+        </Text>
         <FlatList
           data={todos}
           keyExtractor={(item: Todo) => item.id}
           renderItem={({ item }: { item: Todo }) => (
-            <View>
-              <Text>{item.name}</Text>
+            <View style={styles.taskList}>
+              <Text style={{ color: "#9e78cf", flex: 1 }}>{item.name}</Text>
               <TouchableOpacity onPress={() => toggleComplete(item.id)}>
                 <Image source={require("../assets/images/check.svg")} />
               </TouchableOpacity>
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
   addContainer: {
     flexDirection: "row",
     gap: 10,
+    marginBottom: 25,
   },
   taskInput: {
     borderWidth: 2,
@@ -97,5 +104,17 @@ const styles = StyleSheet.create({
   taskInputFocused: {
     borderColor: "#9e78cf",
     outlineWidth: 0,
+  },
+  taskContainer: {
+    marginBottom: 25,
+  },
+  taskList: {
+    height: 50,
+    flexDirection: "row",
+    borderRadius: 10,
+    backgroundColor: '#15101c',
+    alignItems: 'center',
+    paddingInline: 5,
+    marginBlock: 2,
   },
 });
