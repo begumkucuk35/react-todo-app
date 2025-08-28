@@ -34,7 +34,9 @@ export default function index() {
   };
 
   // Delete the task
-  const deleteTodo = (id: string): void => {};
+  const deleteTodo = (id: string): void => {
+    setTodos(todos.filter((task) => task.id !== id ));
+  };
 
   // Complete the task
   const toggleComplete = (id: string): void => {};
@@ -60,17 +62,31 @@ export default function index() {
           Tasks to do - {todos.filter((t) => !t.completed).length}
         </Text>
         <FlatList
-          data={todos}
+          data={todos.filter((t) => !t.completed)}
           keyExtractor={(item: Todo) => item.id}
           renderItem={({ item }: { item: Todo }) => (
             <View style={styles.taskList}>
               <Text style={{ color: "#9e78cf", flex: 1 }}>{item.name}</Text>
-              <TouchableOpacity onPress={() => toggleComplete(item.id)}>
+              <TouchableOpacity style={{marginRight:2}} onPress={() => toggleComplete(item.id)}>
                 <Image source={require("../assets/images/check.svg")} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => deleteTodo(item.id)}>
                 <Image source={require("../assets/images/trash.svg")} />
               </TouchableOpacity>
+            </View>
+          )}
+        />
+      </View>
+      <View style={styles.taskContainer}>
+        <Text style={{ color: "#ffffff", marginBottom: 5, }}>
+          Done - {todos.filter((t) => t.completed).length}
+        </Text>
+        <FlatList
+          data={todos.filter((t) => t.completed)}
+          keyExtractor={(item: Todo) => item.id}
+          renderItem={({ item }: { item: Todo }) => (
+            <View style={styles.taskList}>
+              <Text style={{ color: "#78CFB0", textDecorationLine:"line-through" }}>{item.name}</Text>
             </View>
           )}
         />
